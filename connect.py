@@ -15,10 +15,10 @@ class MyStreamListener(tweepy.StreamListener):
             # returning False in on_error disconnects the stream
             return False
 def main():
-	auth = tweepy.OAuthHandler('I4758hzdChRafr37MvX8PZXq7', '5SQbzpd2RvGjSPPC03Irimyv0o2pgLi9XFpnIkpaqMEaboPGyU')
+	tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.secure=True
 	#auth = tweepy.auth.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, secure=True)
-	auth.set_access_token('1009495532010496000-C6VqlLnsYYtTeioAzuEcrMffm2rRJx', 'wjNchlFnPNlkPSzYqd2am7wOJrgcv2lgZTJSLkBRKLf0W')
+	auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 	print(auth.consumer_key)
 	# create the api needed for the stream
 	api = tweepy.API(auth)
