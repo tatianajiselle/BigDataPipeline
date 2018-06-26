@@ -8,6 +8,8 @@ import urllib3
 class MyStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         print(status.text)
+        f = open('../kafka_2.11-1.1.0/test.txt', 'a+') 
+        f.write(status.text)  # Python 3.x
     
     def on_error(self, status_code):
         print (status_code)
@@ -15,9 +17,10 @@ class MyStreamListener(tweepy.StreamListener):
             # returning False in on_error disconnects the stream
             return False
 def main():
-	tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+	# tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+	# auth.secure=True
+	auth = tweepy.auth.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.secure=True
-	#auth = tweepy.auth.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, secure=True)
 	auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 	print(auth.consumer_key)
 	# create the api needed for the stream
